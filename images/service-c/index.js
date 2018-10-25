@@ -4,7 +4,7 @@ const os=require('os');
 
 app.get('/', (req, res) => res.send(JSON.stringify({
   'service': 'service-c',
-  'version': '0.0.1',
+  'version': '0.0.2',
   'hostname': os.hostname()
 })))
 
