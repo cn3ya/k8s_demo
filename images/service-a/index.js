@@ -8,4 +8,12 @@ app.get('/', (req, res) => res.send(JSON.stringify({
   'hostname': os.hostname()
 })))
 
+app.get('/waiting', (req, res) => setTimeout(function () {
+  res.send(JSON.stringify({
+    'path': '/waiting',
+    'service': 'service-a',
+    'version': '0.0.2',
+    'hostname': os.hostname()
+}))},req.query.time*1000 || 1000))
+
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
