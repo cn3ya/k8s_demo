@@ -4,7 +4,7 @@ const os=require('os');
 
 app.get('/', (req, res) => res.send(JSON.stringify({
   'service': 'service-a',
-  'version': '0.0.2',
+  'version': '0.0.3',
   'hostname': os.hostname()
 })))
 
@@ -12,7 +12,7 @@ app.get('/waiting', (req, res) => setTimeout(function () {
   res.send(JSON.stringify({
     'path': '/waiting',
     'service': 'service-a',
-    'version': '0.0.2',
+    'version': '0.0.3',
     'hostname': os.hostname()
 }))},req.query.time*1000 || 1000))
 
