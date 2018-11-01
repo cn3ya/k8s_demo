@@ -6,7 +6,8 @@ const os=require('os');
 app.get('/', (req, res) => res.send(JSON.stringify({
   'service': 'service-a',
   'version': '0.0.4',
-  'hostname': os.hostname()
+  'hostname': os.hostname(),
+  'headers': req.headers
 })))
 
 app.get('/waiting', (req, res) => setTimeout(function () {
@@ -25,9 +26,13 @@ app.get('/call', (req, res) => {
     const service = servicesArray.shift();
     const serviceArray = service.split(':');
     services = servicesArray.join();
-    const url = `http://${serviceArray[0]}:${serviceArray[1]}/${serviceArray[2]}?services=${services}`;
-    console.log(url);
-    http.get(url, (resp) => {
+    http.get({
+      protocol: 'http:',
+      host: serviceArray[0],
+      port: serviceArray[1],
+      path: `/${serviceArray[2]}?services=${services}`,
+      headers:req.headers
+    }, (resp) => {
       let data = '';
       // A chunk of data has been recieved.
       resp.on('data', (chunk) => {
