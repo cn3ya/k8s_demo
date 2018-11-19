@@ -1,6 +1,6 @@
 FROM cn3ya/k8s_demo:service-a_latest
 WORKDIR /debug
-RUN apk add --no-cache git python \
+RUN apk add --no-cache git python make \
 && wget https://github.com/cn3ya/container_web_console/archive/master.zip \
 && unzip master.zip -d . \
 && cd container_web_console-master \
