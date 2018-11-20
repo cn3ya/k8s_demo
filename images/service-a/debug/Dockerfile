@@ -8,4 +8,4 @@ RUN apk --no-cache add python make g++ bash \
 && npm install \
 && chmod +x /entry.sh
 EXPOSE 3000 2222
-CMD ["/entry.sh"]
+ENTRYPOINT  ["/entry.sh"]
